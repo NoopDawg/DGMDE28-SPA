@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 2px;
+            margin: 5px;
+            font-size: 75px;
+            text-align: center;
+        }
+
+        div.box:hover {
+            background-color: coral;
+            text-color: black;
+        }
+
+        #parent-container {
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div id="parent-container">
+    <div class="box">X</div><div class="box">X</div><div class="box"></div>
+    <div class="box"></div><div class="box">O</div><div class="box"></div>
+    <div class="box"></div><div class="box"></div><div class="box"></div>
+</div>
+
+
+
+</body>
+</html>

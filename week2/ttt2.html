@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .box,
+        .square {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 2px;
+            margin: 5px;
+            font-size: 75px;
+            text-align: center;
+        }
+
+        div.square:hover {
+            background-color: coral;
+            text-color: black;
+        }
+
+        #parent-container {
+            display: flex;
+            min-width: 400px;
+            width: 400px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .row{
+            display: flex;
+        }
+        .info-section {
+            height: 100px;
+            min-width: 300px;
+            border: 1px solid black;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        #info-area {
+            display: inline-block;
+            /*flex-wrap: wrap;*/
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            max-width: 800px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+    <h1> Assignment 2 - Tic Tac Toe </h1>
+</div>
+
+<div class="row">
+<div id="parent-container">
+<script>
+    const NUM_SQUARES = 9;
+    for (i=0; i<NUM_SQUARES; i++)
+    {
+        id = "sq"+i;
+        document.write( "<div class='square' id='" + id + "'></div>" );
+    }
+</script>
+<script>
+    document.getElementById("sq0").innerText = "X"
+    document.getElementById("sq1").innerText = "X"
+    document.getElementById("sq4").innerText = "O"
+</script>
+</div>
+<div id="info-area">
+    <div id="whose-turn" class="info-section">
+        Player:
+    </div>
+    <div id="who-won" class="info-section">
+        Winner:
+
+    </div>
+</div>
+</div>
+</body>
+</html>
