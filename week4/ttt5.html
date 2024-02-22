@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 2 - Tic Tac Toe</title>
+
+    <style>
+        .box,
+        .square {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 2px;
+            margin: 5px;
+            font-size: 75px;
+            text-align: center;
+        }
+
+        div.square:hover {
+            background-color: coral;
+            text-color: black;
+        }
+
+        #parent-container {
+            display: flex;
+            min-width: 400px;
+            width: 400px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+
+        #popup {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            display: none;
+            background-color: white;
+            border: 1px solid black;
+            padding: 50px;
+        }
+
+        .row{
+            display: flex;
+        }
+        .info-section {
+            height: 100px;
+            min-width: 300px;
+            border: 1px solid black;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        #info-area {
+            display: inline-block;
+            /*flex-wrap: wrap;*/
+            max-width: 400px;
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            max-width: 800px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+    <h1> Assignment 2 - Tic Tac Toe </h1>
+</div>
+
+<div class="row">
+<div id="parent-container">
+
+<script>
+    let TURN, GAME_ACTIVE;
+    let moves = [];
+
+    function switchTurn() {
+        TURN = TURN === "X" ? "O" : "X"
+    }
+    function resetBoard(){
+        let squares = document.getElementsByClassName("square")
+        for (let i=0; i<squares.length; i++)
+        {
+            squares[i].innerText = ""
+        }
+        TURN = Math.random() > 0.5 ? "X" : "O"
+        GAME_ACTIVE=true;
+        setTurn(TURN)
+    }
+
+    function setTurn(turn){
+        document.getElementById("whose-turn").innerText = "Player " + turn + "'s turn"
+    }
+
+    function setWinner(winner){
+        GAME_ACTIVE=false;
+        document.getElementById("who-won").innerText = "Winner: " + winner
+    }
+
+    const NUM_SQUARES = 9;
+    for (i=0; i<NUM_SQUARES; i++)
+    {
+        id = "sq"+i;
+        document.write( "<div class='square' id='" + id + "'></div>" );
+        document.getElementById(id).onclick = function(){
+            if (this.innerText === "" && GAME_ACTIVE) {
+                this.innerText = TURN
+
+                let squares = [...document.getElementsByClassName("square")]
+                moves = squares.map(function(square){
+                    if (square.innerText) {
+                        return square.innerText
+                    } else {
+                        return "-"
+                    }
+                })
+
+                let winConditions = [
+                    moves[0] + moves[1] + moves[2],
+                    moves[3] + moves[4] + moves[5],
+                    moves[6] + moves[7] + moves[8],
+                    moves[0] + moves[3] + moves[6],
+                    moves[1] + moves[4] + moves[7],
+                    moves[2] + moves[5] + moves[8],
+                    moves[0] + moves[4] + moves[8],
+                    moves[2] + moves[4] + moves[6]
+                ]
+                if (winConditions.includes("XXX")) {
+                    setWinner("X")
+                } else if (winConditions.includes("OOO")) {
+                    setWinner("O")
+                } else if (!moves.includes("-")) {
+                    setWinner("Tie")
+                } else {
+                    switchTurn()
+                    setTurn(TURN)
+                }
+            }
+        }
+    }
+</script>
+<script>
+    // document.getElementById("sq0").innerText = "X"
+    // document.getElementById("sq1").innerText = "X"
+    // document.getElementById("sq4").innerText = "O"
+</script>
+</div>
+<div id="info-area">
+    <div id = "reset-game" class="info-section">
+        <button onclick="resetBoard()">Start Game</button>
+    </div>
+    <div id="whose-turn" class="info-section">
+        Player:
+    </div>
+    <div id="who-won" class="info-section">
+        Winner:
+    </div>
+    <div id="popup" >
+        Here are words
+    </div>
+</div>
+</div>
+<script>
+    resetBoard()
+</script>
+</body>
+</html>
