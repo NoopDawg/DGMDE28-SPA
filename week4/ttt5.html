@@ -88,7 +88,7 @@
         TURN = Math.random() > 0.5 ? "X" : "O"
         GAME_ACTIVE=true;
         setTurn(TURN)
-        setWinner(" ")
+        document.getElementById("who-won").innerText =  "Winner: "
     }
 
     function setTurn(turn){
