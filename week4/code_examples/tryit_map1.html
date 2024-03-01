@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ForEach</title>
+</head>
+
+<body>
+	<script>
+	
+	var sentence = "The quick brown fox says hello";
+	arrSentence = sentence.split('');
+	vowels = "aeiou".split('');
+	count = 0;
+	newSentence = arrSentence.map(function(c){
+		if (vowels.includes(c)) 
+		{
+			count++;
+			return '*';
+		}
+		else
+			return c;
+	})	
+	document.write ("The # of vowels is: " + count + "<br>" + newSentence.join(""))
+	</script>
+</body>
+</html>

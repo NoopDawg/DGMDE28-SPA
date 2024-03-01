@@ -1,0 +1,47 @@
+<!doctype html>
+<!--
+Create a page with a div called slider that contains a background-image
+Size the div at 700 x 500px
+Position the background to cover the div
+Get three images that will work in that space.  Store the files in the same folder.  Create an array with the names of the three images
+Create a window.onload event to set a global variable called currentSlide to zero (0).  It should also call a function that will use load the current slide as the div background.  It should then increment the currentSlide (wrap around if it gets past the number of images) and call setTimeout to set a 3 second timer.  The function itself will be the callback for the timer.
+
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Slider demo</title>
+<style type= "text/css">
+#slider {width: 700px; height:500px; overflow:hidden; border: 1px solid #666;
+
+background-size: cover; background-position: center}</style>
+<script>
+var images = ["house1.jpg", "house2.jpg", "house3.jpg"]	;
+var currentSlide;
+var timer;
+function startSlider()
+{
+	slider = document.getElementById("slider")
+	slider.style.backgroundImage = "url('images/" + images[currentSlide] + "')";
+	currentSlide++;
+	//currentSlide = (currentSlide == images.length)?0: currentSlide;
+	currentSlide = currentSlide % images.length;
+	console.log(currentSlide)
+	timer= setTimeout(startSlider, 1500 )
+}
+window.onload = function() {
+	currentSlide= 0;
+	startSlider();
+	document.getElementById("btnStop").addEventListener(
+		"click", function() {clearTimeout(timer);}
+	) // end add event listener
+}// end window onload
+</script>
+</head>
+
+<body>
+	<input type="button" value = "STOP!" id="btnStop">
+	<div id='slider'>&nbsp;</div>
+	
+</body>
+</html>

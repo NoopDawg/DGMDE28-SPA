@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ForEach</title>
+</head>
+
+<body>
+	<script>
+	/*
+	Create a string that contains a sentence
+Use split() to create an array consisting of each letter in the string
+Create an array of the 5 vowels and create a variable called count.  Set count to zero (0)
+Use forEach to iterate through the array and use the vowels array to determine if a letter is a vowel – if so, add one to the count.
+Display the array (use join) and the count.
+*/
+	var sentence = "The quick brown fox says hello";
+	arrSentence = sentence.split('');
+	vowels = "aeiou".split('');
+	count = 0;
+	arrSentence.forEach(function(c){
+		if (vowels.includes(c)) count++;
+	})	
+	document.write ("The # of vowels is: " + count)
+	</script>
+</body>
+</html>

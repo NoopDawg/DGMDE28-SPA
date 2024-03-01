@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ForEach</title>
+</head>
+
+<body>
+	<script>
+	arr = [1,2,3,4,5];
+	sum = 0;
+	arr.forEach(function(n){
+		sum+= n;
+	} // end function
+	) // end foreach
+	alert ("The sum is: " + sum )
+	/*letters = ['a', 't', 'u'];
+	word = "hello";
+	letters.forEach(function(c){
+		if (word.indexOf(c) >= 0)
+			alert("found!")
+		else
+			alert("not found")
+	})*/
+	sum = 0;
+	arr = [1,22,3,44,5];
+	arr.forEach(n=>{sum+= n; console.log(n)})// end function
+	
+	alert ("The sum is: " + sum )
+	
+	</script>
+</body>
+</html>

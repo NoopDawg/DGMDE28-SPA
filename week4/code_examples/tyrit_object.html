@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<script>
+	/*
+	Create an associative array of (5) cities and the state they are inThe cities should be the keys.
+Display cities only
+Create a function to locate a city and return its state using the array as a parameter to the function
+*/
+	cityInfo =  {
+		boston: "mass",
+		cambridge: "mass",
+		newport: "ri",
+		'new york city': "ny"
+	}
+	document.write(Object.keys(cityInfo).join("<br>"));
+	
+	for (city in cityInfo)
+		document.write(city + " is in "+ cityInfo[city] + "<br>")
+		
+	function findState(city)
+	{
+		for(key in cityInfo)
+		{
+			if (key==city)
+				return cityInfo[key];
+		}
+		return "not found";
+	}
+	
+	state = findState("montpelier");
+	document.write(state +"<br>");
+	state = findState("boston");
+	document.write(state);	
+	
+	</script>
+</body>
+</html>

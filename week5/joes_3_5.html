@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 2 - Tic Tac Toe</title>
+
+    <style>
+        #shopping-cart {
+            min-height: 80px;
+            border: 1px solid;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        #alert-div {
+            margin: 10px;
+            color: red;
+        }
+
+        #cart-total {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1> Assignment 3 - Objects </h1>
+</div>
+
+<div class="row">
+    <div id="parent-container">
+        <script>
+            //Part 1
+            const menuAssociativeArray = []
+            menuAssociativeArray["hotdog"] = 4
+            menuAssociativeArray["fries"] = 3.50
+            menuAssociativeArray["soda"] = 1.50
+            menuAssociativeArray["sauerkraut"] = 1
+
+            const menuJSON = {
+                hotdog: 4,
+                fries: 3.5,
+                soda: 1.50,
+                sauerkraut: 1
+            }
+
+            function menuItem(itemName,price) {
+                this.itemName = itemName
+                this.price = price
+            }
+
+            const menuObjects = [
+                new menuItem("hotdog", 4),
+                new menuItem("fries", 3.50),
+                new menuItem("soda", 1.50),
+                new menuItem("sauerkraut", 1)
+            ]
+        </script>
+        <script>
+            function displayMenuJSON(jsonObject){
+                const menuItems = Object.keys(jsonObject)
+                document.write("<div>")
+                menuItems.forEach(item => {
+                    document.write(
+                        "<div>" + item + ": $ "+  jsonObject[item] + "</div>"
+                    )
+                })
+                document.write("</div>")
+            }
+            function displayMenuObjectArray(jsonObject){
+                document.write("<div>")
+                jsonObject.forEach( item => {
+                    document.write(
+                        "<div>" + item.itemName + ": $ " +  item.price + "</div> "
+                    )
+                })
+                document.write("</div>")
+            }
+
+            document.write("<div>" +
+                "<h2> Menu by JSON </h2>" +
+                "</div>")
+            displayMenuJSON(menuJSON)
+
+            document.write("<h2> Menu by Objects Array</h2>")
+            displayMenuObjectArray(menuObjects)
+
+        </script>
+
+        <div id="alert-div"></div>
+        <div>
+            <input type="text" id="item-input"> <button onclick="addToCart()"> Add To Cart</button>
+        </div>
+
+        <h3> Cart </h3>
+        <div id="shopping-cart">
+
+        </div>
+        <button onclick="checkout()"> Checkout </button>
+        <div id="cart-total" style="display:none"></div>
+        <script>
+            function resetCart(){
+                cartQuantities = []
+                cartQuantities["hotdog"] = 0
+                cartQuantities["fries"] = 0
+                cartQuantities["soda"] = 0
+                cartQuantities["sauerkraut"] = 0
+            }
+           function addToCart(){
+               const inputItem = document.getElementById("item-input").value.toLowerCase()
+               const menuItems = Object.keys(menuJSON)
+               if (menuItems.includes(inputItem)) {
+                   //Valid choice
+                   cartQuantities[inputItem] += 1
+                   document.getElementById("alert-div").innerText = inputItem + " added to cart!"
+               } else if (!inputItem){
+                   document.getElementById("alert-div").innerText = "No item provided!"
+               } else {
+                   document.getElementById("alert-div").innerText = inputItem + " is not on the menu!"
+               }
+               console.log("foo1")
+               displayShoppingCart()
+           }
+           function displayShoppingCart() {
+               const cartDiv = document.getElementById("shopping-cart")
+               cartDiv.innerHTML = ""
+               const keys = Object.keys(cartQuantities)
+               keys.forEach( (key) => {
+                   if (cartQuantities[key] > 0) {
+                       const itemDiv = document.createElement("div")
+                       itemDiv.textContent = key + ": " + cartQuantities[key]
+                       cartDiv.append(itemDiv)
+                   }
+               })
+           }
+        </script>
+        <script>
+            function checkout(){
+                let total = 0
+                const keys = Object.keys(cartQuantities)
+                keys.forEach( (key) => {
+                    if (cartQuantities[key] > 0) {
+                        total += cartQuantities[key] * menuJSON[key]
+                    }
+                })
+
+                const cartTotalDiv = document.getElementById("cart-total")
+
+                cartTotalDiv.style.display = "block"
+                cartTotalDiv.innerText = "Total: $" + total
+
+                resetCart()
+                displayShoppingCart()
+            }
+        </script>
+        <script>
+            window.onload = function() {
+                resetCart()
+            }
+        </script>
+    </div>
+    <div id="menu-area">
+    </div>
+</div>
+</body>
+</html>

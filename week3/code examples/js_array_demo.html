@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array Demo</title>
+</head>
+
+<body>
+	<script>
+	function makeList(args)
+	{
+		document.write("<ul>");
+		for (i=0; i<args.length;i++)
+			document.write("<li>" + args[i] + "</li>")
+		document.write("</ul>");
+	}
+	makeList(['flowers', 'plants', 'soil', 'baskets'])
+		
+	function makeList2()
+	{
+		document.write("<ul>");
+		for (i=0; i<arguments.length;i++)
+			document.write("<li>" + arguments[i] + "</li>")
+		document.write("</ul>");
+	}
+	makeList2('flowers', 'plants', 'soil', 'baskets')
+	</script>
+</body>
+</html>
