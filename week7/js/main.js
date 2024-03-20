@@ -99,7 +99,7 @@ function showHideAnswer(){
 
 }
 
-function clearAlert(message, color=null){
+function clearAlert(){
     const alert = document.getElementById("alert-center")
     alert.innerText = ""
     alert.style.display = "none"
@@ -124,8 +124,6 @@ async function validateAttempt(attempt){
     //don't love that this gives a console error if word is not found
     const response = await fetch(api_url)
     if (response.ok && response.status === 200){
-        console.log(response.responseText)
-        console.log("Word is valid")
         return true
     } else if (response.status === 404) {
         return false;
@@ -134,7 +132,7 @@ async function validateAttempt(attempt){
 
 async function submitAttempt(){
     if (currentAttemptCharacter < wordLength) {
-        console.log("Please fill in all the letters")
+        showAlertInfo("Please fill in all characters", "#FFFC00D0")
         return
     }
     let attempt = ""
@@ -171,11 +169,9 @@ async function submitAttempt(){
 
     if (attempt === CORRECT_ANSWER) {
         gameWon()
-        console.log("You won!")
     }
     if (currentAttempt === maxAttempts-1) {
         gameLost()
-        console.log("You lost!")
     }
 
     currentAttempt++;
@@ -204,6 +200,8 @@ async function startGame(){
         GAME_STATE = "PLAYING"
         currentAttempt = 0
         currentAttemptCharacter = 0;
+
+        clearAlert()
         createGrid()
         createKeyboard()
         showHideAnswer()
@@ -217,7 +215,6 @@ async function startGame(){
             showHideAnswer()
         })
     }
-    console.log(CORRECT_ANSWER)
 }
 
 function calculateStats(){
