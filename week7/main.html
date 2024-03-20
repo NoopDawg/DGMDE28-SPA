@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DGMD-E28 WORDLE</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<!-- header (creating wordle)-->
+<div class="header">  DGMD-E28 WORDLE </div>
+<hr>
+
+<!--Grid of 6 by 5-->
+<div id="body-container">
+    <div id="game-container">
+        <div id="grid-parent-container">
+            <div id="grid-container"> </div>
+        </div>
+        <div id="alert-container">
+            <div id="alert-center" style="display:none"></div>
+        </div>
+
+        <!--Keyboard-->
+        <div id="keyboard-container">
+            <div id="keyboard"> </div>
+        </div>
+
+    </div>
+    <div id="stats-container">
+        <div id="game-stats">
+            <div id="games-played"> Games Played: 0</div>
+            <div id="games-won"> Games Won: 0</div>
+            <div id="games-lost"> Games Lost: 0</div>
+            <div id="avg-attempts"> Average Number of attempts:  0</div>
+        </div>
+        <div id="start-game-container">
+            <button id="start-game" onclick="startGame()">New Game</button>
+        </div>
+        <div id="debug-mode-switch">
+            <label class="switch">
+                <input type="checkbox" id="debug-mode">
+                <span class="slider round"></span>
+            </label>
+            <span id="debug-mode-text">Debug Mode</span>
+        </div>
+        <div id="debug-mode-answer" style="display:none">
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>

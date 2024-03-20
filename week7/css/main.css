@@ -1,0 +1,130 @@
+body {
+    background-color: #100f0f;
+    color: white;
+}
+
+#body-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    width: 70vw
+}
+#stats-container {
+    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    height: fit-content;
+    width: 20vw
+}
+#stats-container>div {
+    margin: 10px;
+    height: fit-content;
+}
+
+
+.header {
+/*    center text in header */
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #000;
+    width: 100%;
+}
+
+#grid-parent-container {
+    display: flex;
+    justify-content: center;
+}
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 0.4rem;
+    width: fit-content;
+}
+.grid-item {
+    background-color: #343434;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    width: 8vh;
+    height: 8vh;
+    border-radius: 5px;
+
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#alert-container {
+    display: none;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+#alert-center {
+    display: none;
+    border-radius: 10px;
+    border: 1px solid #fffa ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 40vh;
+    font-size: 1.5rem;
+}
+
+.letter.disabled {
+    background-color: #464545;
+    color: rgba(255, 255, 255, 0.38);
+
+}
+
+#keyboard-container {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.letter {
+    width: 2vh;
+    padding: 10px;
+}
+
+.button {
+    margin: 5px 5px;
+    height: 4vh;
+    background-color: #818384;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: white;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 15px 10px 0px 10px;
+}
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: no-wrap;
+}
+
+#keyboard{
+    max-width: 50vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
