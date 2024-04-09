@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DGMD-E28 WORDLE</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="myapp"></div>
+<!-- header (creating wordle)-->
+<div class="header">  DGMD-E28 WORDLE </div>
+<hr>
+
+<!--Grid of 6 by 5-->
+<div id="body-container">
+    <div id="game-container">
+        <div id="grid-parent-container"></div>
+        <div id="alert-container">
+            <div id="alert-center" style="display:none"></div>
+        </div>
+
+        <!--Keyboard-->
+        <div id="keyboard-container">
+            <div id="keyboard"> </div>
+        </div>
+
+    </div>
+    <div id="stats-container">
+        <div id="game-stats">
+            <div id="games-played"> Games Played: 0</div>
+            <div id="games-won"> Games Won: 0</div>
+            <div id="games-lost"> Games Lost: 0</div>
+            <div id="avg-attempts"> Average Number of attempts:  0</div>
+        </div>
+        <div id="start-game-container">
+            <button id="start-game" onclick="startGame()">New Game</button>
+        </div>
+        <div id="debug-mode-switch">
+            <label class="switch">
+                <input type="checkbox" id="debug-mode">
+                <span class="slider round"></span>
+            </label>
+            <span id="debug-mode-text">Debug Mode</span>
+        </div>
+        <div id="debug-mode-answer" style="display:none">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const maxAttempts = 6;
+    const wordLength = 5;
+    const hardCodedGuesses = ["MIGHT", "FLOOD", "STRAY"]
+    // (C) correct, (M) misplaced, (X) incorrect
+    const hardCodedGuessesResults = ["CXXXX", "XXCMM", "XXXXC"]
+    function createGrid() {
+        const gridItems = [];
+
+
+        for (let i = 0; i < maxAttempts; i++) {
+            for (let j = 0; j < wordLength; j++) {
+                let innerText = null
+                let resultClass = ''
+                if (i < hardCodedGuesses.length){
+                    innerText = hardCodedGuesses[i][j];
+                    if (hardCodedGuessesResults[i][j] === 'C') {
+                        resultClass = 'correct';
+                    } else if (hardCodedGuessesResults[i][j] === 'M') {
+                        resultClass = 'misplaced';
+                    } else {
+                        resultClass = 'incorrect';
+                    }
+                }
+                const cell = React.createElement('div', {
+                    className: `grid-item ${resultClass} attempt-` + i,
+                    id: 'cell-' + i + '-' + j,
+                }, innerText);
+                gridItems.push(cell);
+            }
+        }
+        return gridItems;
+    }
+
+    function createKeyboard() {
+        const QWERTY = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+        const keyboardRows = QWERTY.map((row, rowIndex) => {
+            const rowItems = [];
+            if (rowIndex === QWERTY.length - 1) {
+                rowItems.push(React.createElement('div', { className: 'enter button', id: 'enter-button' }, 'ENTER'));
+            }
+            row.split('').forEach(letter => {
+                rowItems.push(React.createElement('div', { className: 'letter button', id: 'letter-' + letter }, letter));
+            });
+            if (rowIndex === QWERTY.length - 1) {
+                rowItems.push(React.createElement('div', { className: 'backspace button', id: 'backspace-button' },
+                    React.createElement('i', { className: 'material-icons' }, '\ue14a')));
+            }
+            return React.createElement('div', { className: 'keyboard-row' }, rowItems);
+        });
+        return keyboardRows;
+    }
+
+    const GridComponent = React.createElement('div', {id:'grid-container'}, createGrid());
+    const KeyboardComponent = React.createElement('div', null, createKeyboard());
+
+    ReactDOM.render(GridComponent, document.getElementById('grid-parent-container'));
+    ReactDOM.render(KeyboardComponent, document.getElementById('keyboard'));
+</script>
+
+
+
+</body>
+</html>
