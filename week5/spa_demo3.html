@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<script>
+	function Flower(name, prc)
+	{
+		this.name=name
+		this.price=prc
+		this.show= function () {return this.name + "  $" + this.price}
+	}
+	
+	f1= new Flower("rose", 14)
+	f2= new Flower("daisy", 5)
+	f3= new Flower("carnation", 10)
+	document.write (f1.name + "  $" + f1.price)
+	document.write ('<br>')
+	document.write (f1.show())
+	document.write ('<br>')
+		
+	flowers = [new Flower("rose", 14), new Flower("daisy", 5), new Flower("carnation", 10) ]
+	
+	document.write (flowers[0].show())
+	document.write ('<br>')	
+		
+	document.write(flowers.map(f=>f.show()).join('<br>'))
+	function find (arrFlowers, name)
+	{
+		return arrFlowers.filter(f=> (f.name ==name))[0].price
+	}
+	document.write ('<br>')
+	document.write(find(flowers, "rose"))
+	
+
+	</script>
+</body>
+</html>

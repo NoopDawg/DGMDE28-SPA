@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Class Demo</title>
+<script>
+	//class called Course with
+	//Name
+    //Course number
+    //Students (an array of student names)
+	
+	class Course
+	{
+		name;
+		
+		constructor(name, courseNumber)
+		{
+			this.name = name;
+			this.courseNumber = courseNumber;
+			this.students=[];
+		}
+		showCourse() 
+		{
+			var s = "<br>"
+			s += "Course name: " + this.name
+			s += "<br>Course number: " + this.courseNumber
+			s += "<br>#Students enrolled: " + spa.students.length 
+			s += "<br>Students enrolled:<br>" +this.students.join('<br>')
+			
+			return s
+		}
+		enrollStudent(name)
+		{
+			if (this.students.includes(name))
+			{
+				alert(name + " is already in the class")
+				return 
+			}
+			else
+				this.students.push(name)
+		}
+		withdrawStudent(name)
+		{
+			if (!this.students.includes(name))
+			{
+				alert(name + " is not in the class")
+				return 
+			}
+			else
+			{
+				//index = this.students.indexOf(name)	
+				var students2 = []
+				this.students.forEach(item=>{
+					if (item != name) 
+						students2.push(item)
+				})
+				this.students=students2
+			}
+				
+		}
+	}
+	
+	class LimitedCourse extends Course
+	{
+		#maxStudents;  //private
+		
+		constructor(name, courseNumber, maxStudents)
+		{
+			this.#maxStudents= maxStudents
+			super (name, courseNumber)
+		}
+		
+		enrollStudent(name)
+		{
+			if (this.students.length == this.#maxStudents)
+			{
+				alert("Class size is at maximum. " + name + " was not enrolled")
+				return
+			}
+			else
+				super.enrollStudent(name)
+		}
+	}
+	
+	
+	spa = new Course('Single Page Web Apps','dgmde28')
+	
+	//document.write(spa.name + " Students enrolled: " + spa.students.length)
+	
+	spa.enrollStudent('diane')
+	spa.enrollStudent('frank')
+	spa.enrollStudent('pete')
+	spa.enrollStudent('pete')
+	
+	document.write (spa.showCourse())
+	
+	spa.withdrawStudent('frank')
+	spa.withdrawStudent('frank')
+	document.write (spa.showCourse())
+
+
+</script>
+</head>
+
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    class Student {
+        constructor(name, grade){
+            this.name = name;
+            this.grade = grade;
+        }
+
+        gradeAverage(){
+            const sum = this.grade.reduce(function(a,b){return a+b})
+            return sum/this.grade.length
+        }
+
+        show(){
+            return `The student, ${this.name}, has a grade average of: ` + this.gradeAverage().toLocaleString()
+        }
+    }
+
+    const jake = new Student("Jake", [100,90,80])
+    document.write(jake.show())
+
+    const studentArray = [
+        new Student("Mike", [98]),
+        new Student("Claire", [77,90,85]),
+        new Student("Aydin", [90,94,72])
+    ]
+</script>
+
+<div id="student_report">
+<script>
+    for (let student of studentArray){
+        document.write('<p>' + student.show() + '</p>')
+    }
+
+</script>
+</div>
+
+</body>
+</html>

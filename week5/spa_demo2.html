@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<script>
+	today = new Date()
+	document.write (today)
+	var [month, day, year] = [today.getMonth()+1, today.getDate(), today.getFullYear()]
+	document.write("<br>" + month+"/"+day+"/"+year + "<br>")
+	
+		
+	function addThem (startVal , ...numbers)
+	{
+		sum = startVal;
+		numbers.forEach(item=>{sum+= item})
+		document.write ("The sum is: " + sum) 
+	}
+	
+	addThem(10, 1, 2, 3, 4)
+	document.write ("<hr>")
+		
+	function combineAndSort(class1, class2)
+	{
+		
+		class1 = class1.split(" ")
+		class2 = class2.split(" ")
+		document.write(class1 + " " + class2)
+		wholeClass = [...class1, ...class2]
+		document.write("<br>" + wholeClass)
+		wholeClass.sort()
+		document.write("<br>" + wholeClass)
+		list = wholeClass.map(item=> ("<li>" + item + "</li>"))
+		document.write("<ol>" + list.join('') + "</ol>")
+		
+		document.write ("<ol>" + 
+			[...class1, ...class2].sort().map(item=> ("<li>" + item + "</li>")).join('')
+			+ "</ol>")
+				
+		
+		
+	}
+		
+	combineAndSort("Jane Alex Harvey", "Seymour Emily Frank");
+	</script>
+</body>
+</html>

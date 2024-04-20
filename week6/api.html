@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<script language="javascript">
+	fetch("http://api.zippopotam.us/us/02140")
+ .then(res => res.json())
+ .then(json => JSON.stringify(json))
+ .then(data => {document.getElementById('fetch').innerHTML = data; })
+ .catch(console.error);
+	
+		
+var req = new XMLHttpRequest();
+req.open("GET", "http://api.zippopotam.us/us/02140", true);
+req.onreadystatechange = function() {
+	if(req.readyState == 4) {
+		console.log("Ajax: " + req.responseText);
+		document.getElementById('ajax').innerHTML = req.responseText; 
+		json = JSON.parse(req.responseText);
+		document.getElementById('city').innerHTML =
+		 json["places"][0]["place name"];	
+	};
+};
+req.send();
+	
+</script>
+Fetch: <div id='fetch'></div>
+<br />
+Ajax: <div id='ajax'></div>
+<br />
+City: <div id='city'></div>
+	
+</body>
+</html>

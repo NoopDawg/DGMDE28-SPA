@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<script>
+	res = fetch(" http://secretcheese.com/api_demo/members/demo/location.json")
+     .then (res =>  res.text())
+	 	//.then (data => document.write(data))
+	.then (data=> {
+			data=JSON.parse(data);
+		    document.write("Place: " + data.description + 
+						   "<br>Location: " + data.coordinates.latitude + " - " + data.coordinates.longitude)
+	})
+	 	.catch (error => console.log(error))	
+	</script>
+</body>
+</html>
