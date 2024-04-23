@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DGMD-E28 WORDLE</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="myapp"></div>
+<!-- header (creating wordle)-->
+<div class="header">  DGMD-E28 WORDLE </div>
+<hr>
+
+<!--Grid of 6 by 5-->
+<div id="body-container">
+    <div id="game-container">
+        <div id="grid-parent-container"></div>
+        <div id="alert-container">
+            <div id="alert-center" style="display:none"></div>
+        </div>
+
+        <!--Keyboard-->
+        <div id="keyboard-container">
+            <div id="keyboard"> </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/babel">
+    const maxAttempts = 6;
+    const wordLength = 5;
+    const correctWord = "MOODY"
+    const hardCodedGuesses = ["MIGHT", "FLOOD", "STRAY"]
+    // (C) correct, (M) misplaced, (X) incorrect
+    const hardCodedGuessesResults = ["CXXXX", "XXCMM", "XXXXC"]
+
+    function getLetterResult(guess, correctWord, letterIndex){
+        let guessLetter = guess[letterIndex]
+        if (guessLetter === correctWord[letterIndex]){
+            return "correct"
+        }  else if (correctWord.includes(guessLetter)) {
+            return "misplaced"
+        } else {
+            return "incorrect"
+        }
+    }
+
+    function AttemptGrid(props){
+        const gridItems = [];
+        for (let i = 0; i < props.maxAttempts; i++) {
+            for (let j = 0; j < props.wordLength; j++) {
+                let innerText = null
+                let resultClass = ''
+                if (i < props.hardCodedGuesses.length) {
+                    innerText = props.hardCodedGuesses[i][j];
+                    resultClass = getLetterResult(hardCodedGuesses[i], correctWord, j)
+                }
+                gridItems.push(
+                    <div key={`${i}-${j}`} className={"grid-item attempt-"+i + " " + resultClass} id={"cell-"+i+'-'+j}>
+                        {innerText}
+                    </div>
+                );
+            }
+        }
+
+        console.log(gridItems)
+        return <div id="grid-container">
+            {
+                gridItems.map((i)=>i)
+            }
+        </div>
+    }
+
+
+    function Key(props){
+        return <div className={props.classes} id={props.id}>{props.content}</div>
+    }
+
+    function EnterKey(props) {
+        //rowItems.push(React.createElement('div', { className: 'backspace button', id: 'backspace-button' },
+        // React.createElement('i', { className: 'material-icons' }, '\ue14a')));
+        return <div className="enter button" id="enter-button">
+            ENTER
+        </div>
+    }
+
+    function BackspaceKey(props) {
+        //rowItems.push(React.createElement('div', { className: 'backspace button', id: 'backspace-button' },
+        // React.createElement('i', { className: 'material-icons' }, '\ue14a')));
+        return <div className="backspace button" id="backspace-button">
+            <i className="material-icons">{"\ue14a"}</i>
+        </div>
+    }
+
+    function Keyboard(props) {
+        const QWERTY = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+        return <div key='foo' id="keyboard">
+            {
+                QWERTY.map((row, rowIndex) => {
+                    return <div key={'row-'+rowIndex} className="keyboard-row">
+                        {
+                            rowIndex === QWERTY.length - 1 && <EnterKey></EnterKey>
+                        }
+
+                        {
+                            row.split('').map((letter, colIndex) => {
+                                return <Key key={letter} classes="letter button" id={"letter-"+letter} content={letter}/>
+                            })
+                        }
+                        {
+                            rowIndex === QWERTY.length - 1 && <BackspaceKey></BackspaceKey>
+                        }
+                    </div>
+                })
+            }
+        </div>
+    }
+
+    // const GridComponent = React.createElement('div', {id:'grid-container'}, createGrid());
+    // const QWERTY = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+    const GridComponent = <AttemptGrid maxAttempts={maxAttempts}
+                                       wordLength={wordLength}
+                                       hardCodedGuesses={hardCodedGuesses}></AttemptGrid>
+    const KeyboardComponent = <Keyboard></Keyboard>
+
+    ReactDOM.render(GridComponent, document.getElementById('grid-parent-container'));
+    ReactDOM.render(KeyboardComponent, document.getElementById('keyboard-container'));
+</script>
+
+
+
+</body>
+</html>

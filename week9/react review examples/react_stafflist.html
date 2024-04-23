@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React Staff List</title>
+<style type="text/css">
+	.person {padding: 5px;  width: 250px; min-height: 200px; 
+			border: 1px #000 solid; display:inline-block; margin-right: 10px;}
+	.staffName {font-weight: 600}
+	
+	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+
+<script type='text/babel'>
+function StaffMember(name, title, image)
+{
+	this.name = name;
+	this.image= image;
+	this.title = title;
+}
+var person1 = new StaffMember("Jane", "Manager", "jane.jpg");
+var person2 = new StaffMember("John", "Director", "john.jpg");
+var person3 = new StaffMember("Sam", "Associate", "sam.jpg");
+
+var staffMembers = [person1, person2, person3]
+
+function StaffName(props)
+{
+	return <p className="staffName">{props.children}</p>
+}
+
+function StaffTitle(props)
+{
+	return <p className="staffTitle">{props.children}</p>
+}
+
+function StaffImage(props)
+{
+	return 	<img src={props.image} alt = {props.image} />
+
+}
+
+function MyStaffMember(props)
+{
+	return <div className = 'person'>
+	
+	<StaffName>{props.person.name}</StaffName>
+	<StaffTitle>{props.person.title}</StaffTitle>
+	<StaffImage image={props.person.image} />
+	</div>
+}
+
+function MyStaffList(props)
+{
+	return  <div className = 'staffList'>
+	{props.members.map((p, i) => <MyStaffMember key={i} person={p} /> )}  
+	</div> //end div
+}
+
+function MyStaffMember2(props)
+{
+	return <div className = 'person'>
+	<p>{props.children}</p>
+	<p>{props.title}</p>
+	</div>
+}
+
+//var p1 = <div className='person'>{person1.name}</div>
+//var p1 = <MyStaffMember person={person3} />
+var p1 = <MyStaffList members = {staffMembers}/>
+
+ReactDOM.render(p1, myapp);	
+</script>	
+</body>
+</html>
+	

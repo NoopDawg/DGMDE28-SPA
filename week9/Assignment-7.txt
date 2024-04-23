@@ -1,0 +1,8 @@
+Online Links:
+https://anupjonchhe.com/DGMDE28-SPA/week8/wordle-redux-part2.html
+
+Question:
+Which seems better for creating the elements of the app: JS alone or JS with React?
+
+Answer:
+Right now JS seems easier, but I can see how React could scale better.
