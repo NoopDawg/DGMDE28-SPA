@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React Components</title>
+<style type="text/css">
+	select,select option {font-size: 16px; }	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+
+<script type='text/babel'>
+
+function Level(name, code)
+{
+	this.name = name;
+	this.code = code;
+}
+		   
+
+function Option({val, text})
+{
+	return <option value={val}>{text}</option>
+}
+
+function Select({name, options}) {
+	return <select name= {name}>
+	{
+		options.map(({name, code}, i) => <Option key={i} val={code} text={name}/>)
+	}
+	</select>
+}
+
+
+var select = <Select name='level' options={[new Level("Beginner", 1),new Level("Intermediate", 1)]}></Select>
+ReactDOM.render(select, myapp);	
+</script>	
+</body>
+</html>
+	

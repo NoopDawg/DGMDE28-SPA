@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React I</title>
+<style type="text/css">
+	h1#main {font-size: 24px;}	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+	
+<script type='text/babel'>
+var hello = <h1 id="main">Hello React World!</h1>
+var pageTitle = "My Great page!"
+var hello2 = <h1 id="main">{pageTitle}</h1>
+ReactDOM.render(hello2, myapp);	
+</script>	
+</body>
+</html>
+	

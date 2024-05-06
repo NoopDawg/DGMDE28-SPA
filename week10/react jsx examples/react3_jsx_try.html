@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React I</title>
+<style type="text/css">
+	h1#main {font-size: 24px;}	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+	
+<script type='text/babel'>
+function NavItem(label, link)
+{
+	this.label = label;
+	this.site = link;
+}
+
+var navItems = [new NavItem("Finance", "https://finance.yahoo.com"),
+			new NavItem("Weather", "https://weather.com"),
+			new NavItem("Sports", "https://espn.com")
+			]
+
+var myList = <ol>
+    {navItems.map((item, i)=><li key={i}><a href={item.site} target="_blank">{item.label}</a></li>)}	</ol>
+
+ReactDOM.render(myList, myapp);	
+</script>	
+</body>
+</html>
+	

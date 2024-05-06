@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React Components</title>
+<style type="text/css">
+	select,select option {font-size: 16px; }	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+
+<script type='text/babel'>
+const speak = () => alert("hey");
+
+function Button(props)
+{
+    
+	return <input type='button' value = {props.children} onClick={props.onClick} />
+}
+
+function ToggleButton1()
+{
+	return <button>Turn Me Off</button>
+}
+
+
+function ToggleButton2()
+{
+	const toggle= () =>  alert("hey");
+	return <button onClick={toggle}>Turn Me Off</button>
+}
+
+function ToggleButton3()
+{
+	const toggle= (e) =>  e.target.value = "Turn Me On";
+	return <input type='button' value = 'Turn Me Off' onClick={toggle} />
+}
+
+function ToggleButton4()
+{
+	const toggle= function(e) {
+		if (e.target.value == "Turn Me On")
+			e.target.value ="Turn Me Off"
+		else
+			e.target.value ="Turn Me On";
+		}
+	return <Button onClick={toggle}>Turn Me Off  </Button>
+}
+
+
+//var button = <Button onClick={speak}>Press this Button</Button>
+var button= <ToggleButton1 />
+ReactDOM.render(button, myapp);	
+</script>	
+</body>
+</html>
+	

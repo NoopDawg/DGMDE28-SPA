@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script	src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<title>React II</title>
+<style type="text/css">
+	select,select option {font-size: 16px; }	
+</style>
+</head>
+
+<body>
+	<div id="myapp"></div>
+
+<script type='text/babel'>
+
+function Level(name, code)
+{
+	this.name = name;
+	this.code = code;
+}
+		   
+
+function Select(props) {
+	return <select name= {props.name}>
+	{
+		props.options.map((level, i) => <option key={i} value={level.code}>{level.name}</option>)
+	}
+	</select>
+}
+var select = <Select name='level' options={[new Level("Beginner", 1),new Level("Intermediate", 1)]} />
+ReactDOM.render(select, myapp);	
+</script>	
+</body>
+</html>
+	
